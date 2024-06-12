@@ -1,0 +1,108 @@
+﻿@model lalaweb.Models.Car
+
+@{
+    ViewData["Title"] = "Car Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .highlight-red {
+        color: darkred;
+    }
+    .highlight-lightred {
+        color: red;
+    }
+    .highlight-green {
+        color: darkgreen;
+    }
+
+    .dl-horizontal dd {
+        font-weight: bold;
+        color: black;
+    }
+
+    .blue-link {
+        color: blue;
+        font-weight: bold;
+        text-decoration: none;
+    }
+</style>
+
+<div>
+    <img src="~/images/Cars/@Model.CImage" alt="Car Image" />
+</div>
+<div>
+    <dl class="dl-horizontal">
+        <dt class="highlight-red">
+            Maker:
+        </dt>
+        <dd>
+            @Model.Maker
+        </dd>
+
+        <dt class="highlight-red">
+            Model:
+        </dt>
+        <dd>
+            @Model.Model
+        </dd>
+
+        <dt class="highlight-red">
+            Year:
+        </dt>
+        <dd>
+            @Model.Year
+        </dd>
+
+        <dt class="highlight-red">
+            Type:
+        </dt>
+        <dd>
+            @Model.CType
+        </dd>
+
+        <dt class="highlight-red">
+            Price:
+        </dt>
+        <dd>
+            $@Model.Price per day
+        </dd>
+
+        <dt class="highlight-red">
+            Reserved:
+        </dt>
+        <dd>
+            @if (Model.CAvailable)
+            {
+                <span class="highlight-green">No, Reserve it now</span>
+            }
+            else
+            {
+                <span class="highlight-lightred">Yes, please try again later</span>
+            }
+        </dd>
+    </dl>
+
+    <div>
+        <div>
+            @if (Model.CAvailable)
+            {
+                <p>
+                    <div class="sign_btn"><a href="@Url.Action("Car_Info", "Home")" class="blue-link">Reservation</a></div>
+                </p>
+            }
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <a href="@Url.Action("Index", "Home")" class="blue-link"><u><strong>Back To Home</strong></u></a>
+                </td>
+                <td style="padding-left: 8px;">
+                </td>
+                <td>
+                    <a href="javascript:history.back()" class="blue-link"><u><strong>Back</strong></u></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

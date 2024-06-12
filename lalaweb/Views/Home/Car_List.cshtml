@@ -1,0 +1,71 @@
+﻿@model IEnumerable<lalaweb.Models.Car>
+
+@{
+    ViewData["Title"] = "Car List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .fleet-header {
+        color: blue;
+    }
+    .strong-black {
+        color: black;
+        font-weight: bold;
+    }
+
+    .strong-orange{
+        color: orange;
+        font-weight: bold;
+    }
+
+    .strong-green {
+        color: green;
+        font-weight: bold;
+    }
+
+    .strong-red {
+        color: red;
+        font-weight: bold;
+    }
+
+    .car-info-link {
+        font-size: 80%;
+        margin-left: -30px;
+    }
+</style>
+
+<h2 class="fleet-header">Explore Our Fleet</h2>
+
+<table class="table">
+    <tbody>
+        @foreach (var Car in Model)
+        {
+            <tr>
+                <td>
+                    <span class="strong-black">@Car.Maker</span>
+                    <span class="strong-black">@Car.Model</span> <br />
+                    <span class="strong-orange">@Car.Year</span> <br />
+                    @if (Car.CAvailable)
+                    {
+                        <span class="strong-green">Car is available</span>
+                    }
+                    else
+                    {
+                        <span class="strong-red">Car is not available</span>
+                    }
+                </td>
+
+                <td style="text-align:center" width="50%">
+                    <img width="25%" height="25%" src="~/images/Cars/@Car.CImage" />
+                </td>
+
+                <td>
+                    <div class="sign_btn car-info-link">
+                        <a href="@Url.Action("Car_Info", "Home", new { id = Car.ID })">Car Information</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
